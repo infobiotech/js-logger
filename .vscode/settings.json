@@ -1,0 +1,45 @@
+{
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "ejs",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "plaintext",
+        "markdown"
+    ],
+    "auto-rename-tag.activationOnLanguage": [
+        "*"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 2,
+    "eslint.format.enable": true,
+    "eslint.nodePath": "",
+    "eslint.packageManager": "yarn",
+    "eslint.run": "onSave",
+    "eslint.validate": [
+        "javascript"
+    ],
+    "files.trimTrailingWhitespace": true,
+    "html.format.extraLiners": "",
+    "html.format.indentInnerHtml": true,
+    "html.format.unformatted": "",
+    "html.format.wrapAttributes": "force-aligned",
+    "html.format.wrapLineLength": 120,
+    "markdownlint.run": "onSave",
+    "prettier.configPath": ".prettierrc.js",
+    "prettier.printWidth": 120,
+    "prettier.requireConfig": true,
+    "prettier.resolveGlobalModules": true,
+    "prettier.singleQuote": true,
+    "prettier.vueIndentScriptAndStyle": true,
+    "xmlTools.enforcePrettySelfClosingTagOnFormat": true,
+    "files.eol": "\n",
+}
