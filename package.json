@@ -2,12 +2,13 @@
   "name": "@infobiotech/js-logger",
   "homepage": "https://github.com/infobiotech/js-logger#readme",
   "author": "Alessandro Raffa <a.raffa@infobiotech.com> (https://infobiotech.com)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "logs"
   ],
   "license": "MIT",
   "main": "build/index.js",
+  "types": "main.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/infobiotech/js-logger.git"

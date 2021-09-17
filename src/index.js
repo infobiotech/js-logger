@@ -45,7 +45,7 @@ export default class IbtLog {
    * @returns
    */
   static #getNormalizedLogLevel = logLevel => {
-    if (isBoolean(logLevel) || (isInteger(logLevel) && logLevel >= 0 && logLevel <= 7)) {
+    if (isBoolean(logLevel) || isInteger(logLevel) && logLevel >= 0 && logLevel <= 7) {
       return logLevel === false ? 0 : logLevel === true ? IbtLog.#defaultLogLevel : logLevel;
     }
     console.warn(`${IbtLog.#className} - Wrong provided logLevel! Setting default.`, {
@@ -215,9 +215,9 @@ export default class IbtLog {
       const trimmedPrimaryName = isString(containerName) ? containerName.trim() : '';
       if (
         IbtLog.#logLevel &&
-        ((trimmedPrimaryName.length &&
+        (trimmedPrimaryName.length &&
           trimmedPrimaryName in IbtLog.#customLogLevels &&
-          IbtLog.#customLogLevels[trimmedPrimaryName] >= level) ||
+          IbtLog.#customLogLevels[trimmedPrimaryName] >= level ||
           IbtLog.#logLevel >= level)
       ) {
         const logFunction = level < 3 ? console.error : level === 3 ? console.warn : console.log;
@@ -258,7 +258,8 @@ export default class IbtLog {
         }
       }
       resolve(true);
-    }).catch(error =>
+    })
+.catch(error =>
       console.error(`${IbtLog.#className}.#log`, {
         error,
         code: error?.code,
