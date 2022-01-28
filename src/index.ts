@@ -3,6 +3,8 @@
  *
  */
 import { isBoolean, isInteger, isString } from 'lodash';
+// types imports
+import type { LogLevelNumber, LogLevels, LogData } from './types';
 /*
  *
  */
@@ -45,7 +47,7 @@ export default class IbtJsLogger {
   /*
    *
    */
-  static #defaultLogLevel = 4;
+  static #defaultLogLevel: LogLevelNumber = 4;
   static #defaultPrependString = '\n';
   static #defaultShowTimestamp = true;
   static #defaultSeparatorString = '|';
@@ -53,21 +55,21 @@ export default class IbtJsLogger {
   /*
    *
    */
-  static #logLevel = null;
-  static #prependString = null;
-  static #showTimestamp = null;
-  static #separatorString = null;
-  static #appendString = null;
+  static #logLevel: LogLevelNumber | null = null;
+  static #prependString: string | null = null;
+  static #showTimestamp: boolean | null = null;
+  static #separatorString: string | null = null;
+  static #appendString: string | null = null;
   /*
    *
    */
-  static #customLogLevels = {};
+  static #customLogLevels: LogLevels = {};
   /**
    *
    * @param {*} logLevel
    * @returns
    */
-  static #getNormalizedLogLevel = logLevel => {
+  static #getNormalizedLogLevel = (logLevel: boolean | LogLevelNumber) => {
     if (isBoolean(logLevel) || isInteger(logLevel) && logLevel >= 0 && logLevel <= 7) {
       return logLevel === false ? 0 : logLevel === true ? IbtJsLogger.#defaultLogLevel : logLevel;
     }
@@ -79,7 +81,6 @@ export default class IbtJsLogger {
   };
   /**
    *
-   * @param {*} param0
    */
   static #init = ({
     logLevel = IbtJsLogger.#defaultLogLevel,
@@ -108,29 +109,28 @@ export default class IbtJsLogger {
       } else {
         IbtJsLogger.#separatorString = separatorString;
       }
-      if (!isBoolean(showTimestamp)) {
-        console.warn(`${IbtJsLogger.#className}.init - Provided showTimestamp is not boolean! Setting default.`, {
-          providedShowTimestamp: showTimestamp,
-          defaultShowTimestamp: `${IbtJsLogger.#defaultShowTimestamp}`,
-        });
-        IbtJsLogger.#showTimestamp = IbtJsLogger.#defaultSeparatorString;
-      } else {
+      // if (!isBoolean(showTimestamp)) { // When should it not be boolean?
+      //   console.warn(`${IbtJsLogger.#className}.init - Provided showTimestamp is not boolean! Setting default.`, {
+      //     providedShowTimestamp: showTimestamp,
+      //     defaultShowTimestamp: `${IbtJsLogger.#defaultShowTimestamp}`,
+      //   });
+      //   IbtJsLogger.#showTimestamp = IbtJsLogger.#defaultSeparatorString;
+      // } else {
         IbtJsLogger.#showTimestamp = showTimestamp === true;
-      }
-      if (!isString(appendString)) {
-        console.warn(`${IbtJsLogger.#className}.init - Provided appendString is not a string! Setting default.`, {
-          providedAppendString: appendString,
-          defaultAppendString: `${IbtJsLogger.#defaultAppendString}`,
-        });
-        IbtJsLogger.#appendString = IbtJsLogger.#defaultAppendString;
-      } else {
+      // }
+      // if (!isString(appendString)) { // When should it not be string?
+      //   console.warn(`${IbtJsLogger.#className}.init - Provided appendString is not a string! Setting default.`, {
+      //     providedAppendString: appendString,
+      //     defaultAppendString: `${IbtJsLogger.#defaultAppendString}`,
+      //   });
+      //   IbtJsLogger.#appendString = IbtJsLogger.#defaultAppendString;
+      // } else {
         IbtJsLogger.#appendString = appendString;
-      }
+      // }
     }
   };
   /**
    *
-   * @param {*} param0
    */
   static init = ({
     logLevel = IbtJsLogger.#defaultLogLevel,
@@ -154,10 +154,8 @@ export default class IbtJsLogger {
   };
   /**
    *
-   * @param {*} logLevel
-   * @param {*} logContainerName
    */
-  static setLogLevel = (logLevel = IbtJsLogger.#defaultLogLevel, logContainerName = null) => {
+  static setLogLevel = (logLevel = IbtJsLogger.#defaultLogLevel, logContainerName: string | null = null) => {
     if (isString(logContainerName)) {
       IbtJsLogger.#customLogLevels[logContainerName.trim()] = IbtJsLogger.#getNormalizedLogLevel(logLevel);
     } else {
@@ -166,72 +164,38 @@ export default class IbtJsLogger {
   };
   /**
    *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} message
-   * @param {*} data
-   * @returns
    */
-  static trace = async (containerName, tag, message, data) => IbtJsLogger.#log(6, containerName, tag, message, data);
+  static trace = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(6, containerName, tag, message, data);
   /**
    *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} message
-   * @param {*} data
+   */
+  static debug = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(5, containerName, tag, message, data);
+  /**
+   *=
    * @returns
    */
-  static debug = async (containerName, tag, message, data) => IbtJsLogger.#log(5, containerName, tag, message, data);
+  static info = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(4, containerName, tag, message, data);
   /**
    *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} message
-   * @param {*} data
-   * @returns
    */
-  static info = async (containerName, tag, message, data) => IbtJsLogger.#log(4, containerName, tag, message, data);
+  static warn = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(3, containerName, tag, message, data);
   /**
    *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} message
-   * @param {*} data
-   * @returns
    */
-  static warn = async (containerName, tag, message, data) => IbtJsLogger.#log(3, containerName, tag, message, data);
+  static error = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(2, containerName, tag, message, data);
   /**
    *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} message
-   * @param {*} data
-   * @returns
    */
-  static error = async (containerName, tag, message, data) => IbtJsLogger.#log(2, containerName, tag, message, data);
+  static fatal = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(1, containerName, tag, message, data);
   /**
    *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} message
-   * @param {*} data
-   * @returns
-   */
-  static fatal = async (containerName, tag, message, data) => IbtJsLogger.#log(1, containerName, tag, message, data);
-  /**
-   *
-   * @param {*} containerName
-   * @param {*} tag
-   * @param {*} messageOrData
-   * @param {*} data
-   * @returns
    */
   static #log = async (
     level = IbtJsLogger.#defaultLogLevel,
     containerName = '',
-    tag = null,
-    messageOrData = null,
-    data = {}
+    tag: string | null = null,
+    messageOrData: string | LogData | null = null,
+    data: LogData = {}
   ) =>
     {
       IbtJsLogger.#init({});
@@ -256,7 +220,7 @@ export default class IbtJsLogger {
           logString += ' ';
           logString += `${IbtJsLogger.#separatorString} ${tag}`.trim();
         }
-        if (messageOrData) {
+        if (messageOrData !== null) {
           if (isString(messageOrData)) {
             logString += ` ${IbtJsLogger.#separatorString} ${messageOrData}`;
             if (data.constructor !== Object || Object.entries(data).length === 0) {
@@ -266,9 +230,7 @@ export default class IbtJsLogger {
               logFunction(logString, data, IbtJsLogger.#appendString);
             }
           } else if (
-            messageOrData !== null &&
             typeof messageOrData === 'object' &&
-            messageOrData.constructor === Object &&
             Object.entries(messageOrData).length > 0
           ) {
             logString += ` ${IbtJsLogger.#separatorString}`;
