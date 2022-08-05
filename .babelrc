@@ -1,16 +1,17 @@
 {
   "presets": [
+    "@babel/preset-typescript",
     [
       "@babel/preset-env",
       {
         "targets": {
-          "node": 6
+          "node": "current"
         }
       }
-    ],
-    "@babel/preset-flow"
+    ]
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties"
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ]
 }
