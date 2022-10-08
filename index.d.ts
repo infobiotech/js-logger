@@ -1,20 +1,16 @@
 declare type LogLevelNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-declare type LogLevels = {
-    [containerName: string]: LogLevelNumber;
-};
 declare type LogData = {
     [field: string]: any;
 };
-export type { LogLevelNumber, LogLevels, LogData };
 export default class IbtJsLogger {
     #private;
-    static FATAL: number;
-    static ERROR: number;
-    static WARN: number;
-    static INFO: number;
-    static DEBUG: number;
-    static TRACE: number;
-    static VERBOSE: number;
+    static FATAL: LogLevelNumber;
+    static ERROR: LogLevelNumber;
+    static WARN: LogLevelNumber;
+    static INFO: LogLevelNumber;
+    static DEBUG: LogLevelNumber;
+    static TRACE: LogLevelNumber;
+    static VERBOSE: LogLevelNumber;
     static LogLevel: string;
     static PrependString: string;
     static ShowTimestamp: string;
@@ -60,3 +56,4 @@ export default class IbtJsLogger {
      */
     static fatal: (containerName: string, tag: string, message: string | LogData, data: LogData) => Promise<boolean>;
 }
+export {};

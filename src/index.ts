@@ -18,10 +18,6 @@ type LogData = {
   [field: string]: any
 }
 /*
- * export
- */
-export type {LogLevelNumber, LogLevels, LogData};
-/*
  *
  */
 export default class IbtJsLogger {
@@ -32,13 +28,13 @@ export default class IbtJsLogger {
   /*
    *
    */
-  static FATAL = 1;
-  static ERROR = 2;
-  static WARN = 3;
-  static INFO = 4;
-  static DEBUG = 5;
-  static TRACE = 6;
-  static VERBOSE = 7;
+  static FATAL: LogLevelNumber = 1;
+  static ERROR: LogLevelNumber = 2;
+  static WARN: LogLevelNumber = 3;
+  static INFO: LogLevelNumber = 4;
+  static DEBUG: LogLevelNumber = 5;
+  static TRACE: LogLevelNumber = 6;
+  static VERBOSE: LogLevelNumber = 7;
   /*
    *
    */
