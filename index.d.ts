@@ -13,15 +13,17 @@ export default class IbtJsLogger {
     static VERBOSE: LogLevelNumber;
     static LogLevel: string;
     static PrependString: string;
+    static PrefixString: string;
     static ShowTimestamp: string;
     static SeparatorString: string;
     static AppendString: string;
     /**
      *
      */
-    static init: ({ logLevel, prependString, showTimestamp, separatorString, appendString, }: {
+    static init: ({ logLevel, prependString, prefixString, showTimestamp, separatorString, appendString, }: {
         logLevel?: LogLevelNumber | undefined;
         prependString?: string | undefined;
+        prefixString?: string | undefined;
         showTimestamp?: boolean | undefined;
         separatorString?: string | undefined;
         appendString?: string | undefined;

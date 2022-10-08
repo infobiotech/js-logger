@@ -40,6 +40,7 @@ export default class IbtJsLogger {
    */
   static LogLevel = 'logLevel';
   static PrependString = 'prependString';
+  static PrefixString = 'prefixString';
   static ShowTimestamp = 'showTimestamp';
   static SeparatorString = 'separatorString';
   static AppendString = 'appendString';
@@ -61,6 +62,7 @@ export default class IbtJsLogger {
    */
   static #defaultLogLevel: LogLevelNumber = 4;
   static #defaultPrependString = '\n';
+  static #defaultPrefixString = '';
   static #defaultShowTimestamp = true;
   static #defaultSeparatorString = '|';
   static #defaultAppendString = '\n';
@@ -69,6 +71,7 @@ export default class IbtJsLogger {
    */
   static #logLevel: LogLevelNumber | null = null;
   static #prependString: string | null = null;
+  static #prefixString: string | null = null;
   static #showTimestamp: boolean | null = null;
   static #separatorString: string | null = null;
   static #appendString: string | null = null;
@@ -97,6 +100,7 @@ export default class IbtJsLogger {
   static #init = ({
     logLevel = IbtJsLogger.#defaultLogLevel,
     prependString = IbtJsLogger.#defaultPrependString,
+    prefixString = IbtJsLogger.#defaultPrefixString,
     showTimestamp = IbtJsLogger.#defaultShowTimestamp,
     separatorString = IbtJsLogger.#defaultSeparatorString,
     appendString = IbtJsLogger.#defaultAppendString,
@@ -111,6 +115,15 @@ export default class IbtJsLogger {
         IbtJsLogger.#prependString = IbtJsLogger.#defaultPrependString;
       } else {
         IbtJsLogger.#prependString = prependString;
+      }
+      if (!isString(prefixString)) {
+        console.warn(`${IbtJsLogger.#className}.init - Provided prefixString is not a string! Setting default.`, {
+          providedPrefixString: prefixString,
+          defaultPrefixString: `${IbtJsLogger.#defaultPrefixString}`,
+        });
+        IbtJsLogger.#prefixString = IbtJsLogger.#defaultPrefixString;
+      } else {
+        IbtJsLogger.#prefixString = prefixString;
       }
       if (!isString(separatorString)) {
         console.warn(`${IbtJsLogger.#className}.init - Provided separatorString is not a string! Setting default.`, {
@@ -147,6 +160,7 @@ export default class IbtJsLogger {
   static init = ({
     logLevel = IbtJsLogger.#defaultLogLevel,
     prependString = IbtJsLogger.#defaultPrependString,
+    prefixString = IbtJsLogger.#defaultPrefixString,
     showTimestamp = IbtJsLogger.#defaultShowTimestamp,
     separatorString = IbtJsLogger.#defaultSeparatorString,
     appendString = IbtJsLogger.#defaultAppendString,
@@ -157,6 +171,7 @@ export default class IbtJsLogger {
       IbtJsLogger.#init({
         logLevel,
         prependString,
+        prefixString,
         showTimestamp,
         separatorString,
         appendString,
@@ -221,6 +236,9 @@ export default class IbtJsLogger {
       ) {
         const logFunction = level < 3 ? console.error : level === 3 ? console.warn : console.log;
         let logString = `${IbtJsLogger.#prependString}`;
+        if (IbtJsLogger.#prefixString) {
+          logString += ` ${IbtJsLogger.#prefixString} `;
+        }
         if (IbtJsLogger.#showTimestamp) {
           logString += ` ${Date.now()}`;
         }
