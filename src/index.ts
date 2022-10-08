@@ -177,34 +177,34 @@ export default class IbtJsLogger {
   /**
    *
    */
-  static trace = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(6, containerName, tag, message, data);
+  static trace = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(6, containerName, tag, message, data);
   /**
    *
    */
-  static debug = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(5, containerName, tag, message, data);
+  static debug = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(5, containerName, tag, message, data);
   /**
    *=
    * @returns
    */
-  static info = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(4, containerName, tag, message, data);
+  static info = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(4, containerName, tag, message, data);
   /**
    *
    */
-  static warn = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(3, containerName, tag, message, data);
+  static warn = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(3, containerName, tag, message, data);
   /**
    *
    */
-  static error = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(2, containerName, tag, message, data);
+  static error = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(2, containerName, tag, message, data);
   /**
    *
    */
-  static fatal = async (containerName: string, tag: string, message: string | LogData, data: LogData) => IbtJsLogger.#log(1, containerName, tag, message, data);
+  static fatal = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(1, containerName, tag, message, data);
   /**
    *
    */
   static #log = async (
-    level = IbtJsLogger.#defaultLogLevel,
-    containerName = '',
+    level: LogLevelNumber = IbtJsLogger.#defaultLogLevel,
+    containerName: string = '',
     tag: string | null = null,
     messageOrData: string | LogData | null = null,
     data: LogData = {}
