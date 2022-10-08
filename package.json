@@ -2,13 +2,13 @@
   "name": "@infobiotech/js-logger",
   "homepage": "https://github.com/infobiotech/js-logger#readme",
   "author": "Alessandro Raffa <a.raffa@infobiotech.com> (https://infobiotech.com)",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "keywords": [
     "logs"
   ],
   "license": "MIT",
   "main": "build/index.js",
-  "types": "main.d.ts",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/infobiotech/js-logger.git"
@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "nodemon",
     "cleanBuild": "rimraf build",
-    "typeCheck": "tsc --noEmit",
+    "typeCheck": "tsc",
     "buildJs": "babel src --out-dir build --extensions \".ts,.tsx\" --no-comments",
     "build": "yarn cleanBuild && yarn typeCheck && yarn buildJs"
   },

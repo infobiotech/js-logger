@@ -4,7 +4,23 @@
  */
 import { isBoolean, isInteger, isString } from 'lodash';
 // types imports
-import type { LogLevelNumber, LogLevels, LogData } from './types';
+/*
+ * import
+ */
+/*
+ * main
+ */
+type LogLevelNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type LogLevels = {
+  [containerName: string]: LogLevelNumber;
+}
+type LogData = {
+  [field: string]: any
+}
+/*
+ * export
+ */
+export type {LogLevelNumber, LogLevels, LogData};
 /*
  *
  */
