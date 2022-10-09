@@ -233,28 +233,35 @@ export default class IbtJsLogger {
           logString += `${Date.now()}`;
         }
         logString += ' ';
-        logString += `${IbtJsLogger.#logLevels[level]}`;
+        logString += `${IbtJsLogger.#logLevels[level]}`.trim();
         logString += ' ';
         // logString += `${IbtJsLogger.#separatorString} `;
         logString += `${trimmedPrimaryName}`.trim();
         if (tag) {
           logString += ' ';
-          logString += `${IbtJsLogger.#separatorString} ${tag}`.trim();
+          logString += `${IbtJsLogger.#separatorString}`;
+          logString += ' ';
+          logString += `${tag}`.trim();
         }
         if (messageOrData !== null) {
           if (isString(messageOrData)) {
-            logString += ` ${IbtJsLogger.#separatorString} ${messageOrData}`;
+            logString += ' ';
+            logString += `${IbtJsLogger.#separatorString}`;
+            logString += ' ';
+            logString += `${messageOrData}`.trim();
             if (data.constructor !== Object || Object.entries(data).length === 0) {
               logFunction(logString, IbtJsLogger.#appendString);
             } else {
-              logString += ` ${IbtJsLogger.#separatorString}`;
+              logString += ' ';
+              logString += `${IbtJsLogger.#separatorString}`;
               logFunction(logString, data, IbtJsLogger.#appendString);
             }
           } else if (
             typeof messageOrData === 'object' &&
             Object.entries(messageOrData).length > 0
           ) {
-            logString += ` ${IbtJsLogger.#separatorString}`;
+            logString += ' ';
+            logString += `${IbtJsLogger.#separatorString}`;
             logFunction(logString, messageOrData, IbtJsLogger.#appendString);
           } else {
             logFunction(logString, IbtJsLogger.#appendString);
