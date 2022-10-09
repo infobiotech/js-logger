@@ -1,15 +1,4 @@
-/* eslint-disable no-mixed-operators */
-/*
- *
- */
 import { isBoolean, isInteger, isString } from 'lodash';
-// types imports
-/*
- * import
- */
-/*
- * main
- */
 type LogLevelNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 type LogLevels = {
   [containerName: string]: LogLevelNumber;
@@ -192,28 +181,28 @@ export default class IbtJsLogger {
   /**
    *
    */
-  static trace = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(6, containerName, tag, message, data);
+  static trace = async (containerName: string, tag?: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(6, containerName, tag, message, data);
   /**
    *
    */
-  static debug = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(5, containerName, tag, message, data);
+  static debug = async (containerName: string, tag?: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(5, containerName, tag, message, data);
   /**
    *=
    * @returns
    */
-  static info = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(4, containerName, tag, message, data);
+  static info = async (containerName: string, tag?: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(4, containerName, tag, message, data);
   /**
    *
    */
-  static warn = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(3, containerName, tag, message, data);
+  static warn = async (containerName: string, tag?: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(3, containerName, tag, message, data);
   /**
    *
    */
-  static error = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(2, containerName, tag, message, data);
+  static error = async (containerName: string, tag?: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(2, containerName, tag, message, data);
   /**
    *
    */
-  static fatal = async (containerName: string, tag: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(1, containerName, tag, message, data);
+  static fatal = async (containerName: string, tag?: string, message?: string | LogData, data?: LogData) => IbtJsLogger.#log(1, containerName, tag, message, data);
   /**
    *
    */
@@ -237,7 +226,7 @@ export default class IbtJsLogger {
         const logFunction = level < 3 ? console.error : level === 3 ? console.warn : console.log;
         let logString = `${IbtJsLogger.#prependString}`;
         if (IbtJsLogger.#prefixString) {
-          logString += ` ${IbtJsLogger.#prefixString} `;
+          logString += `${IbtJsLogger.#prefixString}`;
         }
         if (IbtJsLogger.#showTimestamp) {
           logString += ` ${Date.now()}`;
