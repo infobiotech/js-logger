@@ -229,12 +229,14 @@ export default class IbtJsLogger {
           logString += `${IbtJsLogger.#prefixString}`;
         }
         if (IbtJsLogger.#showTimestamp) {
-          logString += ` ${Date.now()}`;
+          logString += ' ';
+          logString += `${Date.now()}`;
         }
         logString += ' ';
         logString += `${IbtJsLogger.#logLevels[level]}`;
         logString += ' ';
-        logString += `${IbtJsLogger.#separatorString} ${trimmedPrimaryName}`.trim();
+        // logString += `${IbtJsLogger.#separatorString} `;
+        logString += `${trimmedPrimaryName}`.trim();
         if (tag) {
           logString += ' ';
           logString += `${IbtJsLogger.#separatorString} ${tag}`.trim();
