@@ -2,7 +2,7 @@
   "name": "@infobiotech/js-logger",
   "homepage": "https://github.com/infobiotech/js-logger#readme",
   "author": "Alessandro Raffa <a.raffa@infobiotech.com> (https://infobiotech.com)",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "keywords": [
     "logs"
   ],

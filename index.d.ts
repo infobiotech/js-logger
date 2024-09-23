@@ -35,27 +35,26 @@ export default class IbtJsLogger {
     /**
      *
      */
-    static trace: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => Promise<boolean>;
+    static trace: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => boolean;
     /**
      *
      */
-    static debug: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => Promise<boolean>;
-    /**
-     *=
-     * @returns
-     */
-    static info: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => Promise<boolean>;
+    static debug: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => boolean;
     /**
      *
      */
-    static warn: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => Promise<boolean>;
+    static info: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => boolean;
     /**
      *
      */
-    static error: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => Promise<boolean>;
+    static warn: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => boolean;
     /**
      *
      */
-    static fatal: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => Promise<boolean>;
+    static error: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => boolean;
+    /**
+     *
+     */
+    static fatal: (containerName: string, tag?: string | undefined, message?: string | LogData | undefined, data?: LogData | undefined) => boolean;
 }
 export {};
